@@ -4,7 +4,7 @@ import Logo from "@/assets/Logo.png"
 import Link from "./Link"
 import { SelectedPage } from "@/shared/types"
 import useMediaQuery from "@/hooks/useMediaQuery"
-import { isAbsolute } from "path"
+import ActionButton from "@/shared/ActionButton"
 
 type Props = {
   selectedPage: SelectedPage
@@ -53,9 +53,8 @@ const Navbar = ({
                     />
                     </div>
                     <div className={`${flexBetween} gap-8`}>
-                    <Link 
-                      page="Contact Me"
-                      selectedPage={selectedPage}
+                      <ActionButton 
+                      children="Contact Me"
                       setSelectedPage={setSelectedPage}
                     />
                   </div>
