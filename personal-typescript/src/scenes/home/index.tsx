@@ -4,6 +4,8 @@ import ActionButton from '@/shared/ActionButton'
 import EllieMartinson from '@/assets/EllieMartinson.png'
 import BinaryLaptop from '@/assets/BinaryLaptop.png'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
+import { motion } from 'framer-motion'
+
 
 type Props = {
     setSelectedPage: (value: SelectedPage) =>void
@@ -16,24 +18,48 @@ function Home({setSelectedPage}: Props) {
     className="gap-16 bg-gray-20 py-10 md:h-full"
   >
     {/* IMAGE AND MAIN HEADER */}
-    <div className="md:flex mx-auto w-5/6 items-center justify-center md:h-5/6">
+    <motion.div 
+        className="md:flex mx-auto w-5/6 items-center justify-center md:h-5/6"
+        onViewportEnter={()=> setSelectedPage(SelectedPage.Home)}
+    >
         {/* MAIN HEADER */}
         <div className="z-10 mt-32 md:basis-3/5">
             {/* HEADINGS */}
-            <div>
-                <div>
-                    <img alt="ellie-martinson" src={EllieMartinson}/>
+            <motion.div 
+                className="md:-mt-20" 
+                initial="hidden" 
+                whileInView="visible" 
+                viewport={{once : true, amount: 0.5}}
+                transition={{duration: 0.5}}
+                variants={{
+                    hidden: {opacity:0, x:-50},
+                    visible: {opacity:1, x:0}
+                }}>
+                <div className="relative">
+                    <div className="before:absolute before:-top-20 before:-left-20 before:z-[-1] md:before:content-evolvetext">
+                        <img alt="ellie-martinson" src={EllieMartinson}/>
+                    </div>
                 </div>
-            </div>
-            <p>
+            <p className="mt-8 text-sm">
                 Hi! I am Ellie Martinson. I am a Software Engineer with experience in front end UI development. 
                 I have a passion for creating great user experiences.  Even more text about myself and what I do. Text words and characters all in one! Typing and telling about myself in this portion!
             </p>
+            </motion.div>
         </div>
         {/* ACTIONS */}
-        <div>
+        <motion.div
+            className="mt-8 flex items-center gap-8"
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{once : true, amount: 0.5}}
+            transition={{delay:0.2, duration: 0.5}}
+            variants={{
+                hidden: {opacity:0, x:-50},
+                visible: {opacity:1, x:0}
+            }}
+        >
             <ActionButton setSelectedPage={setSelectedPage}>
-                See Some Projects
+                My Projects
             </ActionButton>
             <AnchorLink
                 className = "text-sm font-bold text-primary-500 underline hover:text-secondary-500"
@@ -42,12 +68,12 @@ function Home({setSelectedPage}: Props) {
             >
 
             </AnchorLink>
-        </div>
+        </motion.div>
         {/* IMAGE */}
-        <div>
+        <div className="flex basis-3/5 justify-center md:z-10 md:ml-40 md:mt-16 md:justify-items-end">
             <img alt="binary-laptop" src={BinaryLaptop}/>
         </div>
-    </div>
+    </motion.div>
   </section>
 }
 
