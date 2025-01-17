@@ -8,7 +8,7 @@ import { motion } from 'framer-motion'
 
 
 type Props = {
-    setSelectedPage: (value: SelectedPage) =>void
+    setSelectedPage: (value: SelectedPage) => void
 }
 
 function Home({setSelectedPage}: Props) {
