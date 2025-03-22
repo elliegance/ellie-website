@@ -6,3 +6,9 @@ export enum SelectedPage {
   Projects = "projects",
   ContactMe = "contactme"
 }
+
+export interface GameType {
+  icon: JSX.Element,
+  title: string,
+  description: string
+}
